@@ -1,0 +1,49 @@
+CREATE OR REPLACE PROCEDURE "01_bronze"."load_01_bronze"()
+LANGUAGE plpgsql
+AS $$
+BEGIN
+
+    -- Load crm_cust_info
+    TRUNCATE TABLE "01_bronze".crm_cust_info;
+    COPY "01_bronze".crm_cust_info
+    FROM '/Users/farhanmunadhil/Downloads/sql-data-warehouse-project 2/datasets/source_crm/cust_info.csv'
+    DELIMITER ','
+    CSV HEADER;
+
+    -- Load crm_prd_info
+    TRUNCATE TABLE "01_bronze".crm_prd_info;
+    COPY "01_bronze".crm_prd_info
+    FROM '/Users/farhanmunadhil/Downloads/sql-data-warehouse-project/datasets/source_crm/prd_info.csv'
+    DELIMITER ','
+    CSV HEADER;
+
+    -- Load crm_sales_details
+    TRUNCATE TABLE "01_bronze".crm_sales_details;
+    COPY "01_bronze".crm_sales_details
+    FROM '/Users/farhanmunadhil/Downloads/sql-data-warehouse-project/datasets/source_crm/sales_details.csv'
+    DELIMITER ','
+    CSV HEADER;
+
+    -- Load erp_loc_a101
+    TRUNCATE TABLE "01_bronze".erp_loc_a101;
+    COPY "01_bronze".erp_loc_a101
+    FROM '/Users/farhanmunadhil/Downloads/sql-data-warehouse-project/datasets/source_erp/LOC_A101.csv'
+    DELIMITER ','
+    CSV HEADER;
+
+    -- Load erp_cust_az12
+    TRUNCATE TABLE "01_bronze".erp_cust_az12;
+    COPY "01_bronze".erp_cust_az12
+    FROM '/Users/farhanmunadhil/Downloads/sql-data-warehouse-project/datasets/source_erp/CUST_AZ12.csv'
+    DELIMITER ','
+    CSV HEADER;
+
+    -- Load erp_px_cat_g1v2
+    TRUNCATE TABLE "01_bronze".erp_px_cat_g1v2;
+    COPY "01_bronze".erp_px_cat_g1v2
+    FROM '/Users/farhanmunadhil/Downloads/sql-data-warehouse-project/datasets/source_erp/PX_CAT_G1V2.csv'
+    DELIMITER ','
+    CSV HEADER;
+
+END;
+$$;
